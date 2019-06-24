@@ -1,45 +1,52 @@
-import React from 'react';
+import React ,{Component} from 'react';
 import Delete  from "../images/delete.svg";
 import Plus  from "../images/plus.svg";
-
 import Remove  from "../images/remove.svg";
 import DeletePromp from './DeleteAccount';
 import CreditPromp from './CreditAccount';
 import DebitPromp from './DebitAccount';
-function App() {
-  return (
-    <div className="container row col-12 p-5">
-    <table className="table col-12">
-        <thead>
-          <tr>
-            <th scope="col-2">#</th>
-            <th scope="col-2">FullName</th>
-            <th scope="col-4">Balance</th>
-            <th scope="col-4">Creation Date</th>
-            <th scope="col-2">Operation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td >Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+class App extends Component {
+  state={
+    accounts:[
+      {accountId:1 , accountOwner: "youssef rossamy", balance: "21130.22", creationDate: "2019-06-29"},
+      {accountId:2 , accountOwner: " youssef jamoure", balance: "51130.99", creationDate: "2018-02-28"}]
+  }
+  render(){
+    const accounts = this.state.accounts.map(account=>{
+      return(
+          <tr key={account.accountId}>
+            <td >{account.accountOwner}</td>
+            <td>{account.balance}</td>
+            <td>{account.creationDate}</td>
             <td className="w-50">
-             <a className=""> <img data-toggle="modal" data-target="#creditPromp" src={Plus} width="3%" /></a>
-             <a className=""> <img data-toggle="modal" data-target="#debitPromp" src={Remove} width="3%" /></a>
-             <a className=""> <img  data-toggle="modal" data-target="#deletePromp" src={Delete} width="3%" /></a>
-             <a className=""> </a>
+                <a className=""> <img data-toggle="modal" data-target="#creditPromp" src={Plus} width="3%" /></a>
+                <a className=""> <img data-toggle="modal" data-target="#debitPromp" src={Remove} width="3%" /></a>
+                <a className=""> <img  data-toggle="modal" data-target="#deletePromp" src={Delete} width="3%" /></a>
             </td>
           </tr>
-          
-        </tbody>
-      </table>
-      <DeletePromp/>
-      <CreditPromp/>
-      <DebitPromp/>
-    </div>
-  );
+    )});
+    return (
+      <div className="container row col-12 p-5">
+      <table className="table col-12">
+          <thead>
+            <tr>
+              <th scope="col-2">FullName</th>
+              <th scope="col-4">Balance</th>
+              <th scope="col-4">Creation Date</th>
+              <th scope="col-2">Operation</th>
+            </tr>
+          </thead>
+          <tbody>
+              {accounts}            
+          </tbody>
+        </table>
+        <DeletePromp/>
+        <CreditPromp/>
+        <DebitPromp/>
+      </div>
+    );
+  }
+ 
 }
 
 export default App;

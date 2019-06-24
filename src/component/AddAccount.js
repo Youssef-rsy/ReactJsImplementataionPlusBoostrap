@@ -1,38 +1,54 @@
-import React from "react";
-export default function AddAccount(){
+import React , {Component} from "react";
+export default class AddAccount extends Component{
   
+    state = {
+        accountOwner:null,
+        balance:null,
+        creationDate:null,
+    }
+    handleChange =(e)=>{
+        this.setState({
+            [e.target.id]:e.target.value
+        })
+    }
+    handleSubmit =(e)=>{
+        e.preventDefault();
+        console.log(this.state);
+    }
+    render(){
         return (
              <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">New Account</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body">
-            <form>
-                <div className="form-group">
-                    <label htmlFor="formGroupExampleInput">User Fullname</label>
-                    <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Example input" />
+                <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">New Account</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    </div>
+                    <form onSubmit={this.handleSubmit}>
+                            <div className="modal-body">
+                                <div className="form-group">
+                                    <label htmlFor="accountOwner">User Fullname</label>
+                                    <input type="text" className="form-control" neme="accountOwner" id="accountOwner" placeholder="Example input" onChange={this.handleChange} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="balance">Balance</label>
+                                    <input type="text" className="form-control" name="balance" id="balance" placeholder="Another input" onChange={this.handleChange} />
+                                </div>
+                                <div className="form-group ">
+                                    <label htmlFor="creationDate" className="col-form-label">Creation Date</label>
+                                    <input className="form-control" type="date" defaultValue="2019-06-04" name="creationDate" id="creationDate" onChange={this.handleChange}/>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" className="btn btn-primary">Save </button>
+                            </div>
+                    </form>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="formGroupExampleInput2">Balance</label>
-                    <input type="number" className="form-control" id="formGroupExampleInput2" placeholder="Another input" />
                 </div>
-                <div className="form-group ">
-                    <label htmlFor="example-date-input" className="col-form-label">Creation Date</label>
-                    <input className="form-control" type="date" defaultValue="2011-08-19" id="example-date-input" />
-                </div>
-            </form>
             </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Save </button>
-            </div>
-          </div>
-        </div>
-      </div>
         )
+    }
 }
