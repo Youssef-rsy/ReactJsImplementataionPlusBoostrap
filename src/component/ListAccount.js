@@ -30,24 +30,21 @@ class App extends Component {
             <td>{account.creationDate}</td>
             <td className="w-50">
                 <a className=""> 
-                  <img data-toggle="modal" data-target="#creditPromp" src={Plus} width="3%" />
-                  
+                  <img data-toggle="modal" data-target="#creditPromp" src={Plus} width="3%" onClick={()=>{this.selectedAccount(account.accountId)}} />
                   </a>
                 <a className="">
-                   <img data-toggle="modal" data-target="#debitPromp" src={Remove} width="3%" />
-                  
+                   <img data-toggle="modal" data-target="#debitPromp" src={Remove} width="3%"  onClick={()=>{this.selectedAccount(account.accountId)}}/>
                    </a>
                 <a className=""> 
                   <img  data-toggle="modal" data-target="#deletePromp" src={Delete} width="3%" onClick={()=>{this.selectedAccount(account.accountId)}} />
-                  
                 </a>
             </td>
           </tr>
     )});
     return (
       <div className="container row col-12 p-5">
-      <CreditPromp/>
-      <DebitPromp/>
+      <CreditPromp accountId={this.state.acountId}/>
+      <DebitPromp accountId={this.state.acountId}/>
       <DeletePromp deleteAccount={this.deleteAccount} accountId={this.state.acountId} />
       <table className="table col-12">
           <thead>

@@ -1,6 +1,22 @@
-import React from "react";
+import React , {Component} from "react";
 
-export default function DebitPromp(){
+export default class  DebitPromp extends Component{
+  state={
+    newAmount:null
+  }  
+
+changedAmount =(e)=>{
+  this.setState({
+    newAmount:e.target.value
+  })
+}
+
+SaveChnge=(e)=>{
+  e.preventDefault()
+  console.log(this.props.accountId );
+  console.log(this.state  );
+}
+render(){
 
   return (
     <div className="modal fade" id="debitPromp" tabIndex={-1} role="dialog" aria-labelledby="deletePromp" aria-hidden="true">
@@ -12,20 +28,23 @@ export default function DebitPromp(){
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div className="modal-body">
-      <form>
-          <div className="form-group">
-              <label htmlFor="formGroupExampleInput">Amount</label>
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Amount" />
-          </div>
-      </form>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" className="btn btn-success">Save</button>
-      </div>
+      <form onSubmit={this.SaveChnge}>
+              <div className="modal-body">
+            
+                  <div className="form-group">
+                      <label htmlFor="formGroupExampleInput">Amount</label>
+                      <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Amount" name="newAmout" onChange={this.changedAmount}/>
+                  </div>
+              
+              </div>
+              <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="submit" className="btn btn-success" >Save</button>
+            </div>
+            </form>
     </div>
   </div>
 </div>
 )
+  }
 }
