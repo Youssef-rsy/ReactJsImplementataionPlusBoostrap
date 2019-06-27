@@ -15,7 +15,7 @@ export default class CreditPromp extends Component {
     SaveChnge=(e)=>{
       e.preventDefault()
       console.log(this.props.accountId );
-      console.log(this.state  );
+      console.log(this.state);
     }
     render(){
         return (
