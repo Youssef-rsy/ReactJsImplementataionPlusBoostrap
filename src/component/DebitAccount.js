@@ -1,4 +1,5 @@
 import React , {Component} from "react";
+import AccountService from "../service/AccountService";
 
 export default class  DebitPromp extends Component{
   state={
@@ -15,6 +16,13 @@ SaveChnge=(e)=>{
   e.preventDefault()
   console.log(this.props.accountId );
   console.log(this.state  );
+  AccountService.put("debit/"+this.props.accountId+"/"+this.state.newAmount)
+  .then((response)=>{
+      console.dir(response);
+  })
+  .catch((error)=>{
+      console.log(error);
+  })
 }
 render(){
 
@@ -39,7 +47,7 @@ render(){
               </div>
               <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" className="btn btn-success" >Save</button>
+              <button type="submit" className="btn btn-success" data-dismiss="modal" >Save</button>
             </div>
             </form>
     </div>

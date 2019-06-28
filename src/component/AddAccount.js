@@ -1,4 +1,6 @@
 import React , {Component} from "react";
+import AccountService from "../service/AccountService";
+import  ListAcount from "./ListAccount"
 export default class AddAccount extends Component{
   
     state = {
@@ -13,7 +15,16 @@ export default class AddAccount extends Component{
     }
     handleSubmit =(e)=>{
         e.preventDefault();
-        console.log(this.state);
+        var date = new Date(this.state.creationDate);
+        const creationDate = date.toISOString();
+        this.state.creationDate = creationDate
+        AccountService.post("/",this.state)
+        .then((response)=>{
+            console.dir(response);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     }
     render(){
         return (
@@ -43,7 +54,7 @@ export default class AddAccount extends Component{
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" className="btn btn-primary">Save </button>
+                                <button type="submit" className="btn btn-primary" data-dismiss="modal">Save </button>
                             </div>
                     </form>
                 </div>

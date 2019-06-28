@@ -1,4 +1,5 @@
 import React ,{Component} from "react";
+import AccountService from "../service/AccountService";
 
 export default class CreditPromp extends Component {
 
@@ -16,6 +17,14 @@ export default class CreditPromp extends Component {
       e.preventDefault()
       console.log(this.props.accountId );
       console.log(this.state);
+      ///credit/{id}/{balance}
+      AccountService.put("credit/"+this.props.accountId+"/"+this.state.newAmount)
+      .then((response)=>{
+          console.dir(response);
+      })
+      .catch((error)=>{
+          console.log(error);
+      })
     }
     render(){
         return (
@@ -39,7 +48,7 @@ export default class CreditPromp extends Component {
               </div>
               <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" className="btn btn-success" >Save</button>
+              <button type="submit" className="btn btn-success" data-dismiss="modal">Save</button>
             </div>
             </form>
           </div>

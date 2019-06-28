@@ -14,7 +14,7 @@ import React ,{Component} from "react";
                 </div>
                 <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" className="btn btn-danger" onClick={()=>{deleteAccount(accountId)}} >Delete</button>
+                <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={()=>{deleteAccount(accountId)}} >Delete</button>
                 </div>
             </div>
             </div>

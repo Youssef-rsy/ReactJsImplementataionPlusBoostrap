@@ -7,6 +7,7 @@ import DeletePromp from './DeleteAccount';
 import CreditPromp from './CreditAccount';
 import DebitPromp from './DebitAccount';
 import AccountService from '../service/AccountService'
+import {Link} from "react-router-dom";
 class App extends Component {
   
   
@@ -19,10 +20,9 @@ class App extends Component {
   componentDidMount (){
     AccountService.get("/")
     .then((response)=>{
-      console.log(response);
-        /*this.setState({
-          accounts:reponse
-        })*/
+        this.setState({
+          accounts:response.data
+        })
     } )
     .catch((e)=>{
       console.log(e);
@@ -34,13 +34,26 @@ class App extends Component {
     })
   }
   deleteAccount=(id)=>{
-    console.log(id);
+    AccountService.delete("/"+id)
+    .then((response)=>{
+      this.componentDidMount() 
+      console.dir(response);
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+    
   }
+  AddAccount=()=>{
+    this.componentDidMount() 
+  }
+  
   render(){
     const accounts = this.state.accounts.map(account=>{
       return(
+       
           <tr key={account.accountId}>
-            <td >{account.accountOwner}</td>
+            <td > <Link to={"/"+account.accountId}>{account.accountOwner}</Link></td>
             <td>{account.balance}</td>
             <td>{account.creationDate}</td>
             <td className="w-50">
@@ -55,15 +68,21 @@ class App extends Component {
                 </a>
             </td>
           </tr>
+       
     )});
+    const accountList =  accounts ? ( accounts) :(
+      <div className="col-12">
+          <h6></h6>
+      </div>
+    );
     return (
     <div>
-       <div className="row mt-4 mx-2">
+       <div className="row  mt-4 mx-2">
             <div className="col-7">
                 <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal"> 
                     Add New Account
                 </button>
-                <AddAccount/>
+                <AddAccount  />
             </div>
             <div className="col-5">
                 <div className="alert alert-danger alert-dismissible fade hide float-left col-10" role="alert">
@@ -81,10 +100,10 @@ class App extends Component {
           <table className="table col-12">
               <thead>
                 <tr>
-                  <th scope="col-2">FullName</th>
+                  <th scope="col-3">FullName</th>
                   <th scope="col-4">Balance</th>
                   <th scope="col-4">Creation Date</th>
-                  <th scope="col-2">Operation</th>
+                  <th scope="col-1">Operation</th>
                 </tr>
               </thead>
               <tbody>

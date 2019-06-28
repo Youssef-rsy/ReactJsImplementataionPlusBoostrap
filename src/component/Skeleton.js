@@ -4,6 +4,7 @@ import Logo  from "../images/logo.svg";
 import {NavLink} from "react-router-dom";
 import Home from "./Home"
 import {Route} from "react-router-dom"
+import AccountData from "./AccountData";
 export default function Skeleton(){
     return (
         <div className="container col-12">
@@ -23,6 +24,7 @@ export default function Skeleton(){
          <div className="row col-12">
             <Route exact path="/" component={Home} ></Route>
             <Route path="/ListAccount" component={ListAccount} ></Route>
+            <Route path="/:accountId" component={AccountData} ></Route>
          </div>
         </div>
     )
