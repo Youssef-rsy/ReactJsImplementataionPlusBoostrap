@@ -13,9 +13,7 @@ class App extends Component {
   
   state={
     acountId:null,
-    accounts:[
-      {accountId:1 , accountOwner: "youssef rossamy", balance: "21130.22", creationDate: "2019-06-29"},
-      {accountId:2 , accountOwner: " youssef jamoure", balance: "51130.99", creationDate: "2018-02-28"}]
+    accounts: []
   }
   componentDidMount (){
     AccountService.get("/")
@@ -53,7 +51,7 @@ class App extends Component {
       return(
        
           <tr key={account.accountId}>
-            <td > <Link to={"/"+account.accountId}>{account.accountOwner}</Link></td>
+            <td> <Link to={"/"+account.accountId}>{account.accountOwner}</Link></td>
             <td>{account.balance}</td>
             <td>{account.creationDate}</td>
             <td className="w-50">
@@ -70,10 +68,11 @@ class App extends Component {
           </tr>
        
     )});
-    const accountList =  accounts ? ( accounts) :(
-      <div className="col-12">
-          <h6></h6>
-      </div>
+    const accountList =  accounts.length ? ( accounts) :(
+    
+        <tr>
+            <td colSpan="4" className="text-center  font-weight-bold bg-info" >No Data To Display : Please Try Again !!</td>
+        </tr>
     );
     return (
     <div>
@@ -107,7 +106,7 @@ class App extends Component {
                 </tr>
               </thead>
               <tbody>
-                  {accounts}            
+                  {accountList}            
               </tbody>
             </table>
         

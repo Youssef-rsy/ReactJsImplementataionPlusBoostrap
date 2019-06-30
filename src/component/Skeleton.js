@@ -1,10 +1,10 @@
 import React from "react";
 import ListAccount from './ListAccount'
 import Logo  from "../images/logo.svg";
-import {NavLink} from "react-router-dom";
+import {NavLink , Switch} from "react-router-dom";
 import Home from "./Home"
 import {Route} from "react-router-dom"
-import AccountData from "./AccountData";
+import AccountInfo from "./AccountInfo";
 export default function Skeleton(){
     return (
         <div className="container col-12">
@@ -22,9 +22,11 @@ export default function Skeleton(){
           </div>
          
          <div className="row col-12">
+          <Switch>
             <Route exact path="/" component={Home} ></Route>
-            <Route path="/ListAccount" component={ListAccount} ></Route>
-            <Route path="/:accountId" component={AccountData} ></Route>
+            <Route path="/ListAccount"  component={ListAccount} ></Route>
+            <Route path="/:accountId"  component={AccountInfo} ></Route>
+          </Switch>
          </div>
         </div>
     )
