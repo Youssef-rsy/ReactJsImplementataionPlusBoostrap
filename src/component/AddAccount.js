@@ -1,6 +1,5 @@
 import React , {Component} from "react";
 import AccountService from "../service/AccountService";
-import  ListAcount from "./ListAccount"
 export default class AddAccount extends Component{
   
     state = {
@@ -9,18 +8,25 @@ export default class AddAccount extends Component{
         creationDate:null,
     }
     handleChange =(e)=>{
+      
         this.setState({
             [e.target.id]:e.target.value
         })
     }
     handleSubmit =(e)=>{
+
+        console.log("submit data");
         e.preventDefault();
         var date = new Date(this.state.creationDate);
         const creationDate = date.toISOString();
         this.state.creationDate = creationDate
+        /*this.setState({
+            creationDate:creationDate
+        })*/
         AccountService.post("/",this.state)
         .then((response)=>{
-            console.dir(response);
+            console.log(response);
+            
         })
         .catch((error)=>{
             console.log(error);
@@ -54,7 +60,7 @@ export default class AddAccount extends Component{
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" className="btn btn-primary" data-dismiss="modal">Save </button>
+                                <button type="submit" className="btn btn-primary" >Save </button>
                             </div>
                     </form>
                 </div>

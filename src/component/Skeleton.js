@@ -11,7 +11,7 @@ export default function Skeleton(){
           <div className="row col-12">
             <nav className="navbar navbar-light bg-dark col-12 ">
               <span className="d-block col-auto">
-                <img  src={Logo} width="50%"  />
+                <img  src={Logo} width="50%"  alt="React log"/>
               </span>
               <div className="col-4 float-left"> 
                 <NavLink to="/" className="col-1"  >Home</NavLink>

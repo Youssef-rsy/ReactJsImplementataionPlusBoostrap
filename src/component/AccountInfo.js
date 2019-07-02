@@ -22,7 +22,7 @@ export default class AccountInfo extends Component{
 
     render(){
         
-        const accountInfo = this.state.account.status == 200 ?(
+        const accountInfo = this.state.account.status === 200 ?(
             <div className="card text-center ">
                 <div className="card-header">Account Information</div>
                 <div className="card-body">

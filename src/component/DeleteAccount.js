@@ -1,4 +1,4 @@
-import React ,{Component} from "react";
+import React  from "react";
 
 //export default class DeletePromp extends Component {
     const DeletePromp =({deleteAccount , accountId})=>{

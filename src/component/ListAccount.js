@@ -55,15 +55,15 @@ class App extends Component {
             <td>{account.balance}</td>
             <td>{account.creationDate}</td>
             <td className="w-50">
-                <a className=""> 
-                  <img data-toggle="modal" data-target="#creditPromp" src={Plus} width="3%" onClick={()=>{this.selectedAccount(account.accountId)}} />
-                  </a>
-                <a className="">
-                   <img data-toggle="modal" data-target="#debitPromp" src={Remove} width="3%"  onClick={()=>{this.selectedAccount(account.accountId)}}/>
-                   </a>
-                <a className=""> 
-                  <img  data-toggle="modal" data-target="#deletePromp" src={Delete} width="3%" onClick={()=>{this.selectedAccount(account.accountId)}} />
-                </a>
+                <span className=""> 
+                  <img alt="add" data-toggle="modal" data-target="#creditPromp" src={Plus} width="3%" onClick={()=>{this.selectedAccount(account.accountId)}} />
+                  </span>
+                <span className="">
+                   <img alt="substract"data-toggle="modal" data-target="#debitPromp" src={Remove} width="3%"  onClick={()=>{this.selectedAccount(account.accountId)}}/>
+                   </span>
+                <span className=""> 
+                  <img alt="delete" data-toggle="modal" data-target="#deletePromp" src={Delete} width="3%" onClick={()=>{this.selectedAccount(account.accountId)}} />
+                </span>
             </td>
           </tr>
        

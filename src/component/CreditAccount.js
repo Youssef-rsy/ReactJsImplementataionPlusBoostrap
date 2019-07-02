@@ -48,7 +48,7 @@ export default class CreditPromp extends Component {
               </div>
               <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" className="btn btn-success" data-dismiss="modal">Save</button>
+              <button type="submit" className="btn btn-success" >Save</button>
             </div>
             </form>
           </div>
