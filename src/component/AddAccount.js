@@ -25,6 +25,8 @@ export default class AddAccount extends Component{
         })*/
         AccountService.post("/",this.state)
         .then((response)=>{
+            //this.props.history.push('/');
+            console.log(this.props);
             console.log(response);
             
         })

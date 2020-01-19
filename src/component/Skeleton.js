@@ -1,7 +1,7 @@
 import React from "react";
 import ListAccount from './ListAccount'
 import Logo  from "../images/logo.svg";
-import {NavLink , Switch} from "react-router-dom";
+import {NavLink , Switch , Redirect} from "react-router-dom";
 import Home from "./Home"
 import {Route} from "react-router-dom"
 import AccountInfo from "./AccountInfo";
@@ -23,9 +23,10 @@ export default function Skeleton(){
          
          <div className="row col-12">
           <Switch>
-            <Route exact path="/" component={Home} ></Route>
+            <Route exact path="/" component={Home} ></Route>c
             <Route path="/ListAccount"  component={ListAccount} ></Route>
             <Route path="/:accountId"  component={AccountInfo} ></Route>
+            <Redirect from="/ok" to="/"/>
           </Switch>
          </div>
         </div>

@@ -1,4 +1,6 @@
 import React ,{Component} from 'react';
+import ReactTable from 'react-table-6'
+import 'react-table-6/react-table.css'
 import AddAccount from "./AddAccount";
 import Delete  from "../images/delete.svg";
 import Plus  from "../images/plus.svg";
@@ -8,6 +10,7 @@ import CreditPromp from './CreditAccount';
 import DebitPromp from './DebitAccount';
 import AccountService from '../service/AccountService'
 import {Link} from "react-router-dom";
+import style from './style.css';
 class App extends Component {
   
   
@@ -47,6 +50,24 @@ class App extends Component {
   }
   
   render(){
+    const columns = [{
+      Header: 'ID',
+      accessor: 'accountId' // String-based value accessors!
+    }, {
+      Header: 'accountOwner',
+      accessor: 'accountOwner',
+      Cell: props => <span className='number '>{props.value}</span> // Custom cell components!
+    },
+    {
+      Header: props => <span>balance</span>, // Custom header components!
+      accessor: 'balance'
+    },
+    {
+      Header: props => <span>Creation Date </span>, // Custom header components!
+      accessor: 'creationDate',
+      className:"text-primary",
+      headerClassName : "text-primary"
+    }]
     const accounts = this.state.accounts.map(account=>{
       return(
        
@@ -75,7 +96,7 @@ class App extends Component {
         </tr>
     );
     return (
-    <div>
+    <div className="container">
        <div className="row  mt-4 mx-2">
             <div className="col-7">
                 <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal"> 
@@ -92,7 +113,7 @@ class App extends Component {
                 </div>
             </div>
           </div>
-      <div className="container row col-12 p-5">
+      <div className="row col-12 p-5 d-none">
           <CreditPromp accountId={this.state.acountId}/>
           <DebitPromp accountId={this.state.acountId}/>
           <DeletePromp deleteAccount={this.deleteAccount} accountId={this.state.acountId} />
@@ -111,8 +132,20 @@ class App extends Component {
             </table>
         
       </div>
-
+      <div className="container row col-12 bg-light">
+      <ReactTable
+      className="col-12"
+        data={this.state.accounts}
+        columns={columns}
+        // loading="false" 
+        pageSizeOptions= {[10,20,25, 50, 100]}
+        defaultPageSize={10}
+        
+      />
+      </div>
+     
     </div>
+
     );
   }
  
